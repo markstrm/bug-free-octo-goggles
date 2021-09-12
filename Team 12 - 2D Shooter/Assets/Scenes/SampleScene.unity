@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  _Camera: {fileID: 519420031}
 --- !u!50 &1954131382
 Rigidbody2D:
   serializedVersion: 4
@@ -367,6 +368,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6be49754-f629-4f99-be5f-71f5ebefb5c5
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1a088e7a-18e4-454b-b39f-b63212fec93d
+    m_ActionName: Movement/MousePos[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
