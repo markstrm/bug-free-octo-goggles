@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         playerInputActions.Enable();    // enables our controls
 
-        playerInputActions.Player.MousePos.performed += OnMousePos;    //Action map -> Fixa
+        playerInputActions.Player.MousePosition.performed += OnMousePos;    //Action map -> Fixa
 
     }
 
@@ -44,13 +44,13 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        playerInputActions.Player.Fire.performed += _ => PlayerFire();    //listens to our mouseclicks
+        playerInputActions.Player.Shoot.performed += _ => PlayerFire();    //listens to our mouseclicks
         main = Camera.main;
     }
 
     private void PlayerFire()
     {
-        Vector2 mousePosition = playerInputActions.Player.MousePos.ReadValue<Vector2>(); //Reading vecto2 of current mousepos
+        Vector2 mousePosition = playerInputActions.Player.MousePosition.ReadValue<Vector2>(); //Reading vecto2 of current mousepos
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         GameObject g = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation);
         g.SetActive(true);
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate() //fixedupdate for physics
     {
-        Vector2 moveInput = playerInputActions.Player.Move.ReadValue<Vector2>(); //Movement refers to the Action map / get vector2 value from player input and store it in vector2 to be able to use later.
+        Vector2 moveInput = playerInputActions.Player.Movement.ReadValue<Vector2>(); //Movement refers to the Action map / get vector2 value from player input and store it in vector2 to be able to use later.
         rb.velocity = moveInput * speed;
 
         /**Vector2 facingDirection = _MousePos - rb.position;
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         **/
 
         // Rotation
-        Vector2 mouseScreenPosition = playerInputActions.Player.MousePos.ReadValue<Vector2>();
+        Vector2 mouseScreenPosition = playerInputActions.Player.MousePosition.ReadValue<Vector2>();
         Vector3 mouseWorldPosition = main.ScreenToWorldPoint(mouseScreenPosition);
         Vector3 targetDirection = mouseWorldPosition - transform.position; //returns vector pointing in the direction of our mousepos in the world
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
